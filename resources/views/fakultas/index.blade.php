@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Data Beasiswa</h1>
+                        <h1 class="m-0">Data Fakultas</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Beasiswa</li>
+                            <li class="breadcrumb-item active">Fakultas</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -35,37 +35,24 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                        @if(Auth::user()->role == 'mahasiswa')
-                            <form action="{{ route('beasiswa_detail-create') }}">
-                                <button type="submit" class="btn btn-primary">Tambah Beasiswa</button>
-                            </form>
-                        @endif
+                        <form action="{{ route('fakultas-create') }}">
+                            <button type="submit" class="btn btn-primary">Tambah Fakultas</button>
+                        </form>
+
                     <br>
                     <br>
                     <table id="table-mk" class="table table-striped">
                         <thead>
                         <tr>
-                            <th>ID Beasiswa Detail</th>
-                            <th>ID User</th>
-                            <th>ID Beasiswa</th>
-                            <th>Jenis Beasiswa</th>
-                            <th>Dokumen Beasiswa</th>
-                            <th>Aksi</th>
+                            <th>ID Fakultas</th>
+                            <th>Fakultas</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($bds as $bd)
+                        @foreach($fs as $f)
                             <tr>
-                                <td>{{ $bd->id_beasiswa_detail }}</td>
-                                <td>{{ $bd->users_id }}</td>
-                                <td>{{ $bd->beasiswa_id_beasiswa }}</td>
-                                <td>{{ $bd->jenis_beasiswa }}</td>
-                                <td><a href="{{ Storage::url($bd->dokumen_beasiswa) }}" target="_blank">Download Dokumen</a></td>
-                                <td>
-                                    <a href="{{ route('beasiswa_detail-edit', ['id' => $bd->id_beasiswa_detail]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
-                                    <a href="{{ route('beasiswa_detail-delete', ['id' => $bd->id_beasiswa_detail]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
-                                </td>
-
+                                <td>{{ $f->id_fakultas }}</td>
+                                <td>{{ $f->fakultas }}</td>
                             </tr>
                         @endforeach
                         </tbody>

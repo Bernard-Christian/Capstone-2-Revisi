@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Beasiswa;
 use App\Models\BeasiswaDetail;
+use App\Models\JenisBeasiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use function Laravel\Prompts\alert;
-use Illuminate\Support\Facades\Log;
 
 class BeasiswaDetailController extends Controller
 {
@@ -33,6 +31,7 @@ class BeasiswaDetailController extends Controller
         return view('beasiswa_detail.create', [
             'users' => User::all(),
             'bs' => Beasiswa::all(),
+            'jbs' => JenisBeasiswa::all(),
         ]);
     }
 
