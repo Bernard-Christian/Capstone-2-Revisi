@@ -20,6 +20,7 @@ class BeasiswaDetailController extends Controller
     {
         return view('beasiswa_detail.index',[
             'bds' => BeasiswaDetail::all(),
+            'jbs' => JenisBeasiswa::all(),
         ]);
     }
 
@@ -44,8 +45,10 @@ class BeasiswaDetailController extends Controller
             'id_beasiswa_detail' => 'required|int',
             'users_id' => 'required',
             'beasiswa_id_beasiswa' => 'required',
-            'jenis_beasiswa' => 'required|string',
-            'dokumen_beasiswa' => 'mimes:pdf|max:10000'
+            'dokumen_beasiswa' => 'mimes:pdf|max:10000',
+            'jenis_beasiswa' => 'string',
+            'ipk' => 'int',
+            'poin_portofolio' => 'int',
         ])->validate();
 
 

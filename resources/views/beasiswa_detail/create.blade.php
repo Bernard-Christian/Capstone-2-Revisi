@@ -60,24 +60,37 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="beasiswa-detail-jenis" class="col-form-label col-sm-2">Jenis Beasiswa</label>
-                                        <div class="col-sm-8">
-                                            <select id="beasiswa-detail-jenis" name="jenis_beasiswa_id_jenis_beasiswa" required class="form-control select2">
-                                                @foreach($jbs as $jb)
-                                                    <option name="id_jenis_beasiswa" value="{{ $b->id_jenis_beasiswa }}">{{ $b->id_jenis_beasiswa }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
                                     <div class ="form-group">
                                         <label for="beasiswa-dokumen" class="col-form-label col-sm-2">Dokumen Beasiswa</label>
                                         <div class="col-sm-4">
                                             <input type="file" class="form-control-file" id="beasiswa-dokumen" name="dokumen_beasiswa" accept="application/pdf" required>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="beasiswa-detail-ipk">IPK</label>
+                                        <input type="text" class="form-control" id="beasiswa-detail-ipk"
+                                               placeholder="Contoh: 3" name="ipk" required autofocus
+                                               maxlength="100">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="beasiswa-detail-porto">Poin Portofolio</label>
+                                        <input type="text" class="form-control" id="beasiswa-detail-porto"
+                                               placeholder="Contoh: Text" name="poin_portofolio" required autofocus
+                                               maxlength="100">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="beasiswa-detail-jenis-beasiswa" class="col-form-label col-sm-2">Jenis Beasiswa</label>
+                                        <div class="col-sm-8">
+                                            <select id="beasiswa-detail-jenis-beasiswa" name="jenis_beasiswa_jenis_beasiswa" required class="form-control select2">
+                                                @foreach($jbs as $jb)
+                                                    <option name="jenis_beasiswa" value="{{ $jb->jenis_beasiswa }}">{{ $jb->jenis_beasiswa }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
+                                    </form>
+
                         @endif
                     </div>
                 </div>

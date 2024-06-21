@@ -33,10 +33,10 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                    @if(in_array(Auth::user()->role, ['prodi','mahasiswa']))
+                    @if(in_array(Auth::user()->role, ['prodi']))
                         <li class="nav-item">
                             <a href="{{ route('periodebs-list') }}" class="nav-link">
-                                    <i class="nav-icon far fa-user"></i>
+                                <i class="nav-icon far fa-user"></i>
                                 <p>
                                     Periode Beasiswa
                                 </p>
@@ -50,26 +50,50 @@
                                 </p>
                             </a>
                         </li>
-                   @endif
-                    @if(in_array(Auth::user()->role, ['prodi','admin', 'fakultas']))
+                    @endif
+                    @if(Auth::user()->role == 'fakultas')
                         <li class="nav-item">
-                            <a href="{{ route('prodi-list') }}" class="nav-link">
+                            <a href="{{ route('periodebs-list') }}" class="nav-link">
                                 <i class="nav-icon far fa-user"></i>
                                 <p>
-                                    Program Studi
+                                    Periode Beasiswa
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('fakultas-list') }}" class="nav-link">
+                            <a href="{{ route('beasiswa_detail-list') }}" class="nav-link">
                                 <i class="nav-icon far fa-user"></i>
                                 <p>
-                                    Fakultas
+                                    Beasiswa Detail
                                 </p>
                             </a>
                         </li>
                     @endif
                     @if(Auth::user()->role == 'admin')
+                    <li class="nav-item">
+                        <a href="{{ route('prodi-list') }}" class="nav-link">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Program Studi
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('fakultas-list') }}" class="nav-link">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Fakultas
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('jenis_beasiswa-list') }}" class="nav-link">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Jenis Beasiswa
+                            </p>
+                        </a>
+                    </li>
                         <li class="nav-item">
                             <a href="{{ route('user-list') }}" class="nav-link">
                                 <i class="nav-icon far fa-user"></i>
@@ -78,7 +102,25 @@
                                 </p>
                             </a>
                         </li>
-                   @endif
+                    @endif
+                    @if(Auth::user()->role == 'mahasiswa')
+                        <li class="nav-item">
+                            <a href="{{ route('periodebs-list') }}" class="nav-link">
+                                <i class="nav-icon far fa-user"></i>
+                                <p>
+                                    Periode Beasiswa
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('beasiswa_detail-list') }}" class="nav-link">
+                                <i class="nav-icon far fa-user"></i>
+                                <p>
+                                    Beasiswa Detail
+                                </p>
+                            </a>
+                        </li>
+                    @endif
                 <li class="nav-item">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
