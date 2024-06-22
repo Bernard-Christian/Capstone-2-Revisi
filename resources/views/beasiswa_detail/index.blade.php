@@ -36,9 +36,15 @@
                         </div>
                     @endif
                         @if(Auth::user()->role == 'mahasiswa')
-                            <form action="{{ route('beasiswa_detail-create') }}">
-                                <button type="submit" class="btn btn-primary">Tambah Beasiswa</button>
-                            </form>
+                            @if($hasApplied)
+                                <div class="alert alert-info">
+                                    You have already applied for a scholarship.
+                                </div>
+                            @else
+                                <form action="{{ route('beasiswa_detail-create') }}">
+                                    <button type="submit" class="btn btn-primary">Tambah Beasiswa</button>
+                                </form>
+                            @endif
                         @endif
                     <br>
                     <br>
@@ -52,6 +58,7 @@
                             <th>IPK</th>
                             <th>Poin Portofolio</th>
                             <th>Dokumen Beasiswa</th>
+                            <th>Semester</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
@@ -60,13 +67,14 @@
                             <tr>
                                 <td>{{ $bd->id_beasiswa_detail }}</td>
                                 <td>{{ $bd->users_id }}</td>
-                                <td>{{ $bd->id_beasiswa }}</td>
-                                @foreach($bds as $bd)
+                                <td>{{ $bd->beasiswa_id_beasiswa }}</td>
+                                @foreach($jbs as $jb)
                                     <td>{{ $jb->jenis_beasiswa}}</td>
                                 @endforeach
                                 <td>{{ $bd->ipk }}</td>
                                 <td>{{ $bd->poin_portofolio }}</td>
                                 <td><a href="{{ Storage::url($bd->dokumen_beasiswa) }}" target="_blank">Download Dokumen</a></td>
+                                <td>{{ $bd->semester }}</td>
                                 <td>
                                     <a href="{{ route('beasiswa_detail-edit', ['id' => $bd->id_beasiswa_detail]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
                                     <a href="{{ route('beasiswa_detail-delete', ['id' => $bd->id_beasiswa_detail]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>

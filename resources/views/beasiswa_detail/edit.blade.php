@@ -74,6 +74,28 @@
                                     <input type="file" class="form-control-file" id="beasiswa-dokumen" name="dokumen_beasiswa" accept="application/pdf" required>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="beasiswa-detail-ipk">IPK</label>
+                                <input type="text" class="form-control" id="beasiswa-detail-ipk"
+                                       placeholder="Contoh: 3" name="ipk" required autofocus
+                                       maxlength="100" value="{{ $beasiswa->ipk }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="beasiswa-detail-porto">Poin Portofolio</label>
+                                <input type="text" class="form-control" id="beasiswa-detail-porto"
+                                       placeholder="Contoh: Text" name="poin_portofolio" required autofocus
+                                       maxlength="100" value="{{ $beasiswa->poin_portofolio }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="beasiswa-detail-jenis-beasiswa" class="col-form-label col-sm-2">Jenis Beasiswa</label>
+                                <div class="col-sm-8">
+                                    <select id="beasiswa-detail-jenis-beasiswa" name="jenis_beasiswa" required class="form-control select2">
+                                        @foreach($jbs as $jb)
+                                            <option name="jenis_beasiswa" value="{{ $jb->jenis_beasiswa }}">{{ $jb->jenis_beasiswa }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>

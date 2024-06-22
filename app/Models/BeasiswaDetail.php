@@ -17,6 +17,9 @@ class BeasiswaDetail extends Model
         'beasiswa_id_beasiswa',
         'jenis_beasiswa',
         'dokumen_beasiswa',
+        'ipk',
+        'poin_portofolio',
+        'semester',
     ];
 
     protected $primaryKey = 'id_beasiswa_detail';

@@ -43,7 +43,8 @@ class UserController extends Controller
             'name' => 'required|string|max:100',
             'email' => 'required|email|max:100|unique:users',
             'password' => 'required|string|confirmed',
-            'role' => 'required|string'
+            'role' => 'required|string',
+            'status' => 'required|string',
         ])->validate();
         $user = new User($validatedData);
         $user->save();

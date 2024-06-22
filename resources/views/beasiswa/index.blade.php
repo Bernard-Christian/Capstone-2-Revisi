@@ -35,11 +35,11 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                        @if(Auth::user()->role == 'fakultas')
-                            <form action="{{ route('periodebs-create') }}" method="get">
-                                <button type="submit" class="btn btn-primary">Tambah Periode Beasiswa</button>
-                            </form>
-                        @endif
+                    @if(Auth::user()->role == 'fakultas')
+                        <form action="{{ route('periodebs-create') }}" method="get">
+                            <button type="submit" class="btn btn-primary">Tambah Periode Beasiswa</button>
+                        </form>
+                    @endif
 
                     <br>
                     <br>
@@ -49,9 +49,7 @@
                             <th>ID Beasiswa</th>
                             <th>Periode Awal Beasiswa</th>
                             <th>Periode Akhir Beasiswa</th>
-                            @if(Auth::user()->role == 'fakultas')
                             <th>Actions</th>
-                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -62,8 +60,11 @@
                                 <td>{{ $b->periode_akhir_beasiswa }}</td>
                                 <td>
                                     @if(Auth::user()->role == 'fakultas')
-                                    <a href="{{ route('periodebs-edit', ['id' => $b->id_beasiswa]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
-                                    <a href="{{ route('periodebs-delete', ['id' => $b->id_beasiswa]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
+                                        <a href="{{ route('periodebs-edit', ['id' => $b->id_beasiswa]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('periodebs-delete', ['id' => $b->id_beasiswa]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
+                                    @endif
+                                    @if(Auth::user()->role == 'mahasiswa')
+                                        <a href="{{ route('beasiswa_detail-list') }}" class="btn btn-outline-warning" role="button" data-deadline="{{ $b->periode_akhir_beasiswa }}"><i class="fas fa-edit"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -75,7 +76,6 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
-    </div>
 @endsection
 
 @section('ExtraCSS')
@@ -84,6 +84,24 @@
 @endsection
 
 @section('ExtraJS')
+    <script>
+        $('.btn-outline-warning').on('click', function(event) {
+            var deadline = $(this).data('deadline');
+            checkPollingDeadline(event, deadline);
+        });
+        function checkPollingDeadline(event, deadline) {
+            var now = new Date();
+            var endPolling = new Date(deadline);
+
+            if (now > endPolling) {
+                alert("Waktu polling telah berakhir. Anda tidak bisa mengakses halaman ini lagi.");
+                event.preventDefault();
+            } else {
+                window.location.href = "{{ route('periodebs-list') }}";
+            }
+        }
+    </script>
+
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script>

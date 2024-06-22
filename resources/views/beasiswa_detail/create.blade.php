@@ -43,11 +43,9 @@
                                     <div class="form-group">
                                         <label for="user-id" class="col-form-label col-sm-2">ID User</label>
                                         <div class="col-sm-8">
-                                            <select id="user-id" name="users_id" required class="form-control select2">
-                                                @foreach($users as $user)
-                                                    <option name="id" value="{{ $user->id }}">{{ $user->id }}</option>
-                                                @endforeach
-                                            </select>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="user-id" name="users_id" value="{{ Auth::user()->id }}" readonly>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="beasiswa-id" class="col-form-label col-sm-2">ID Beasiswa</label>
@@ -81,12 +79,18 @@
                                     <div class="form-group">
                                         <label for="beasiswa-detail-jenis-beasiswa" class="col-form-label col-sm-2">Jenis Beasiswa</label>
                                         <div class="col-sm-8">
-                                            <select id="beasiswa-detail-jenis-beasiswa" name="jenis_beasiswa_jenis_beasiswa" required class="form-control select2">
+                                            <select id="beasiswa-detail-jenis-beasiswa" name="jenis_beasiswa" required class="form-control select2">
                                                 @foreach($jbs as $jb)
                                                     <option name="jenis_beasiswa" value="{{ $jb->jenis_beasiswa }}">{{ $jb->jenis_beasiswa }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="beasiswa-detail-semester">Semester</label>
+                                        <input type="text" class="form-control" id="beasiswa-detail-semester"
+                                               placeholder="Contoh: Text" name="semester" required autofocus
+                                               maxlength="45">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>

@@ -40,6 +40,7 @@
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Role</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -50,6 +51,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role }}</td>
+                                    <td>{{ $user->status }}</td>
                                     <td>
                                         <a href="{{ route('user-edit', ['user' => $user->id]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
                                         <a href="{{ route('user-delete', ['user' => $user->id]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>

@@ -6,7 +6,9 @@ use App\Models\Beasiswa;
 use App\Models\BeasiswaDetail;
 use App\Models\JenisBeasiswa;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BeasiswaDetailController extends Controller
 {
@@ -18,9 +20,18 @@ class BeasiswaDetailController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $hasApplied = false;
+
+        if ($user->role == 'mahasiswa') {
+            $hasApplied = BeasiswaDetail::where('users_id', $user->id)->exists();
+        }
+
         return view('beasiswa_detail.index',[
             'bds' => BeasiswaDetail::all(),
             'jbs' => JenisBeasiswa::all(),
+            'bs' => Beasiswa::all(),
+            'hasApplied' => $hasApplied,
         ]);
     }
 
@@ -47,8 +58,9 @@ class BeasiswaDetailController extends Controller
             'beasiswa_id_beasiswa' => 'required',
             'dokumen_beasiswa' => 'mimes:pdf|max:10000',
             'jenis_beasiswa' => 'string',
-            'ipk' => 'int',
-            'poin_portofolio' => 'int',
+            'ipk' => 'numeric',
+            'poin_portofolio' => 'integer',
+            'semester' => 'string',
         ])->validate();
 
 
@@ -77,6 +89,7 @@ class BeasiswaDetailController extends Controller
             'beasiswa' => $beasiswa,
             'users' => User::all(),
             'bs' => Beasiswa::all(),
+            'jbs' => JenisBeasiswa::all(),
         ]);
     }
 
@@ -87,11 +100,18 @@ class BeasiswaDetailController extends Controller
     {
         $validatedData  = $request->validate([
             'id_beasiswa_detail' => 'required|int',
-            'users_id' => '',
+            'users_id' => 'required',
             'beasiswa_id_beasiswa' => 'required',
-            'jenis_beasiswa' => 'required|string',
+            'dokumen_beasiswa' => 'mimes:pdf|max:10000',
+            'jenis_beasiswa' => 'string',
+            'ipk' => 'numeric',
+            'poin_portofolio' => 'integer',
+            'semester' => 'string',
         ]);
+
         $beasiswa = BeasiswaDetail::findOrFail($id);
+        $path = $request->file('dokumen_beasiswa')->store('dokumen', 'public');
+        $beasiswa->dokumen_beasiswa = $path;
         $beasiswa ->update($validatedData);
         return redirect()->route('beasiswa_detail-list');
     }

@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
-                    <a href="{{ route('beasiswa_detail-list') }}" role="button" class="btn btn-success">Masuk</a>
+                    <a href="{{ route('periodebs-list') }}" role="button" class="btn btn-success">Masuk</a>
                 </div>
             </div>
         </div>
