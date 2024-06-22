@@ -60,6 +60,8 @@
                             <th>Dokumen Beasiswa</th>
                             <th>Semester</th>
                             <th>Aksi</th>
+                            <th>Approve by Prodi</th>
+                            <th>Approve by Fakultas</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -78,6 +80,32 @@
                                 <td>
                                     <a href="{{ route('beasiswa_detail-edit', ['id' => $bd->id_beasiswa_detail]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
                                     <a href="{{ route('beasiswa_detail-delete', ['id' => $bd->id_beasiswa_detail]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
+                                </td>
+                                <td>
+                                    @if(!$bd->prodi_approved)
+                                        @if(Auth::user()->role == 'prodi')
+                                            <form action="{{ route('beasiswa_detail-approve-prodi', ['id' => $bd->id_beasiswa_detail]) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success">Approve Prodi</button>
+                                            </form>
+                                        @endif
+                                    @else
+                                        <span class="badge badge-success">Approved by Prodi</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($bd->prodi_approved && !$bd->fakultas_approved)
+                                        @if(Auth::user()->role == 'fakultas')
+                                            <form action="{{ route('beasiswa_detail-approve-fakultas', ['id' => $bd->id_beasiswa_detail]) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success">Approve Fakultas</button>
+                                            </form>
+                                        @endif
+                                    @elseif($bd->fakultas_approved)
+                                        <span class="badge badge-success">Approved by Fakultas</span>
+                                    @else
+                                        <span class="badge badge-warning">Pending Approval</span>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

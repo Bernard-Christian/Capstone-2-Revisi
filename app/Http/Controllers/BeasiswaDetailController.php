@@ -125,4 +125,28 @@ class BeasiswaDetailController extends Controller
         $beasiswa->delete();
         return redirect()->back();
     }
+
+    public function approveByProdi(string $id)
+    {
+        $beasiswa = BeasiswaDetail::findOrFail($id);
+
+        $beasiswa->prodi_approved = true;
+        $beasiswa->save();
+
+        return redirect()->back()->with('success', 'Beasiswa approved by Prodi successfully.');
+    }
+
+    public function approveByFakultas(string $id)
+    {
+        $beasiswa = BeasiswaDetail::findOrFail($id);
+
+        if (!$beasiswa->prodi_approved) {
+            return redirect()->back()->with('alert', 'Beasiswa must be approved by Prodi first.');
+        }
+
+        $beasiswa->fakultas_approved = true;
+        $beasiswa->save();
+
+        return redirect()->back()->with('success', 'Beasiswa approved by Fakultas successfully.');
+    }
 }

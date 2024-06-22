@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/beasiswa_detail/edit/{id}', [BeasiswaDetailController::class, 'edit'])->name('beasiswa_detail-edit');
     Route::post('/beasiswa_detail/edit/{id}', [BeasiswaDetailController::class, 'update'])->name('beasiswa_detail-update');
     Route::get('/beasiswa_detail/delete/{id}', [BeasiswaDetailController::class, 'destroy'])->name('beasiswa_detail-delete');
+    Route::post('/beasiswa_detail/{id}/approve-prodi', [BeasiswaDetailController::class, 'approveByProdi'])->name('beasiswa_detail-approve-prodi');
+    Route::post('/beasiswa_detail/{id}/approve-fakultas', [BeasiswaDetailController::class, 'approveByFakultas'])->name('beasiswa_detail-approve-fakultas');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
