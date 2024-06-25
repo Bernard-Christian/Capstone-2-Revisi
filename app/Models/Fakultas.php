@@ -17,4 +17,5 @@ class Fakultas extends Model
     ];
 
     protected $primaryKey = 'id_fakultas';
+    
 }

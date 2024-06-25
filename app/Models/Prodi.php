@@ -17,4 +17,5 @@ class Prodi extends Model
     ];
 
     protected $primaryKey = 'id_prodi';
+
 }

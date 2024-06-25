@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beasiswa;
 use App\Models\JenisBeasiswa;
 use Illuminate\Http\Request;
 
@@ -54,7 +55,10 @@ class JenisBeasiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $jbs = JenisBeasiswa::findOrFail($id);
+        return view('jenis_beasiswa.edit', [
+            'jbs' => $jbs,
+        ]);
     }
 
     /**
@@ -62,7 +66,13 @@ class JenisBeasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData  = $request->validate([
+            'id_jenis_beasiswa' => 'required|int',
+            'jenis_beasiswa' => 'required|string',
+        ]);
+        $jenisbeasiswa = JenisBeasiswa::findOrFail($id);
+        $jenisbeasiswa->update($validatedData);
+        return redirect()->route('jenis_beasiswa-list');
     }
 
     /**
@@ -70,6 +80,8 @@ class JenisBeasiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $jenisbeasiswa = JenisBeasiswa::findOrFail($id);
+        $jenisbeasiswa->delete();
+        return redirect()->back();
     }
 }

@@ -46,6 +46,7 @@
                         <tr>
                             <th>ID Prodi</th>
                             <th>Program Studi</th>
+                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,6 +54,10 @@
                             <tr>
                                 <td>{{ $p->id_prodi }}</td>
                                 <td>{{ $p->prodi }}</td>
+                                <td>
+                                    <a href="{{ route('prodi-edit', ['id' => $p->id_prodi]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('prodi-delete', ['id' => $p->id_prodi]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

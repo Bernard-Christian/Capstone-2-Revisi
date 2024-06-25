@@ -55,7 +55,10 @@ class ProdiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ps = Prodi::findOrFail($id);
+        return view('prodi.edit', [
+            'ps' => $ps,
+        ]);
     }
 
     /**
@@ -63,7 +66,13 @@ class ProdiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData  = $request->validate([
+            'id_prodi' => 'required|int',
+            'prodi' => 'required|string',
+        ]);
+        $prodi = Prodi::findOrFail($id);
+        $prodi->update($validatedData);
+        return redirect()->route('prodi-list');
     }
 
     /**
@@ -71,6 +80,8 @@ class ProdiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $prodi = Prodi::findOrFail($id);
+        $prodi->delete();
+        return redirect()->back();
     }
 }

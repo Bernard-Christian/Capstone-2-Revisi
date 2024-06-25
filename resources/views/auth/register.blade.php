@@ -52,6 +52,20 @@
             </select>
         </div>
 
+        <!-- Prodi -->
+        <div>
+            <x-input-label for="prodi" :value="__('Prodi')" />
+            <x-text-input id="prodi" class="block mt-1 w-full" type="text" name="prodi" :value="old('prodi')" required autofocus autocomplete="prodi" />
+            <x-input-error :messages="$errors->get('prodi')" class="mt-2" />
+        </div>
+
+        <!-- Fakultas -->
+        <div>
+            <x-input-label for="fakultas" :value="__('Fakultas')" />
+            <x-text-input id="fakultas" class="block mt-1 w-full" type="text" name="fakultas" :value="old('fakultas')" required autofocus autocomplete="fakultas" />
+            <x-input-error :messages="$errors->get('fakultas')" class="mt-2" />
+        </div>
+
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}

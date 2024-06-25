@@ -46,6 +46,7 @@
                         <tr>
                             <th>ID Jenis Beasiswa</th>
                             <th>Jenis Beasiswa</th>
+                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,6 +54,10 @@
                             <tr>
                                 <td>{{ $jb->id_jenis_beasiswa }}</td>
                                 <td>{{ $jb->jenis_beasiswa }}</td>
+                                <td>
+                                    <a href="{{ route('jenis_beasiswa-edit', ['id' => $jb->id_jenis_beasiswa]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('jenis_beasiswa-delete', ['id' => $jb->id_jenis_beasiswa]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

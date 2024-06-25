@@ -66,6 +66,18 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="user-status">Prodi</label>
+                                <input type="text" class="form-control" id="user-prodi"
+                                       placeholder="Contoh: text" name="prodi" required autofocus
+                                       maxlength="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="user-status">Fakultas</label>
+                                <input type="text" class="form-control" id="user-fakultas"
+                                       placeholder="Contoh: text" name="fakultas" required autofocus
+                                       maxlength="100">
+                            </div>
+                            <div class="form-group">
                                 <label for="user-status">Status</label>
                                 <input type="text" class="form-control" id="user-status"
                                        placeholder="Contoh: text" name="status" required autofocus

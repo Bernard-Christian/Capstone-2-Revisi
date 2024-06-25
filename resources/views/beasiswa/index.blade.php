@@ -59,7 +59,7 @@
                                 <td>{{ $b->periode_awal_beasiswa }}</td>
                                 <td>{{ $b->periode_akhir_beasiswa }}</td>
                                 <td>
-                                    @if(Auth::user()->role == 'fakultas')
+                                    @if(in_array(Auth::user()->role, ['prodi', 'fakultas']))
                                         <a href="{{ route('periodebs-edit', ['id' => $b->id_beasiswa]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
                                         <a href="{{ route('periodebs-delete', ['id' => $b->id_beasiswa]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
                                     @endif

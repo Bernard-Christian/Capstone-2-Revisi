@@ -22,13 +22,19 @@ class BeasiswaDetailController extends Controller
     {
         $user = Auth::user();
         $hasApplied = false;
+        $bds = [];
 
         if ($user->role == 'mahasiswa') {
             $hasApplied = BeasiswaDetail::where('users_id', $user->id)->exists();
+            $bds = BeasiswaDetail::where('prodi', $user->prodi)->get();
+        } elseif ($user->role == 'prodi') {
+            $bds = BeasiswaDetail::where('prodi', $user->prodi)->get();
+        } elseif ($user->role == 'fakultas') {
+            $bds = BeasiswaDetail::where('fakultas', $user->fakultas)->get();
         }
 
         return view('beasiswa_detail.index',[
-            'bds' => BeasiswaDetail::all(),
+            'bds' => $bds,
             'jbs' => JenisBeasiswa::all(),
             'bs' => Beasiswa::all(),
             'hasApplied' => $hasApplied,
@@ -61,6 +67,7 @@ class BeasiswaDetailController extends Controller
             'ipk' => 'numeric',
             'poin_portofolio' => 'integer',
             'semester' => 'string',
+            'prodi' => 'string',
         ])->validate();
 
 

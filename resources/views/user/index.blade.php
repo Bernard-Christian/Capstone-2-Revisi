@@ -40,6 +40,8 @@
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Role</th>
+                                <th>Prodi</th>
+                                <th>Fakultas</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -51,6 +53,8 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role }}</td>
+                                    <td>{{ $user->prodi }}</td>
+                                    <td>{{ $user->fakultas }}</td>
                                     <td>{{ $user->status }}</td>
                                     <td>
                                         <a href="{{ route('user-edit', ['user' => $user->id]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>

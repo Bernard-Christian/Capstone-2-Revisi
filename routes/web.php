@@ -54,12 +54,21 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/jenis_beasiswa', [\App\Http\Controllers\JenisBeasiswaController::class, 'index'])->name('jenis_beasiswa-list');
     Route::get('/jenis_beasiswa/create', [\App\Http\Controllers\JenisBeasiswaController::class, 'create'])->name('jenis_beasiswa-create');
     Route::post('/jenis_beasiswa/create', [\App\Http\Controllers\JenisBeasiswaController::class, 'store'])->name('jenis_beasiswa-store');
+    Route::get('/jenis_beasiswa/edit/{id}', [\App\Http\Controllers\JenisBeasiswaController::class, 'edit'])->name('jenis_beasiswa-edit');
+    Route::post('/jenis_beasiswa/edit/{id}', [\App\Http\Controllers\JenisBeasiswaController::class, 'update'])->name('jenis_beasiswa-update');
+    Route::get('/jenis_beasiswa/delete/{id}', [\App\Http\Controllers\JenisBeasiswaController::class, 'destroy'])->name('jenis_beasiswa-delete');
 
     Route::get('/fakultas', [\App\Http\Controllers\FakultasController::class, 'index'])->name('fakultas-list');
     Route::get('/fakultas/create', [\App\Http\Controllers\FakultasController::class, 'create'])->name('fakultas-create');
     Route::post('/fakultas/create', [\App\Http\Controllers\FakultasController::class, 'store'])->name('fakultas-store');
+    Route::get('/fakultas/edit/{id}', [\App\Http\Controllers\FakultasController::class, 'edit'])->name('fakultas-edit');
+    Route::post('/fakultas/edit/{id}', [\App\Http\Controllers\FakultasController::class, 'update'])->name('fakultas-update');
+    Route::get('/fakultas/delete/{id}', [\App\Http\Controllers\FakultasController::class, 'destroy'])->name('fakultas-delete');
 
     Route::get('/prodi', [\App\Http\Controllers\ProdiController::class, 'index'])->name('prodi-list');
     Route::get('/prodi/create', [\App\Http\Controllers\ProdiController::class, 'create'])->name('prodi-create');
     Route::post('/prodi/create', [\App\Http\Controllers\ProdiController::class, 'store'])->name('prodi-store');
+    Route::get('/prodi/edit/{id}', [\App\Http\Controllers\ProdiController::class, 'edit'])->name('prodi-edit');
+    Route::post('/prodi/edit/{id}', [\App\Http\Controllers\ProdiController::class, 'update'])->name('prodi-update');
+    Route::get('/prodi/delete/{id}', [\App\Http\Controllers\ProdiController::class, 'destroy'])->name('prodi-delete');
 });

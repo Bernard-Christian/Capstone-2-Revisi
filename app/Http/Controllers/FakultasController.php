@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Fakultas;
 use App\Models\JenisBeasiswa;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
 class FakultasController extends Controller
@@ -55,7 +56,10 @@ class FakultasController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $fs = Fakultas::findOrFail($id);
+        return view('fakultas.edit', [
+            'fs' => $fs,
+        ]);
     }
 
     /**
@@ -63,7 +67,13 @@ class FakultasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData  = $request->validate([
+            'id_fakultas' => 'required|int',
+            'fakultas' => 'required|string',
+        ]);
+        $fakultas = Fakultas::findOrFail($id);
+        $fakultas->update($validatedData);
+        return redirect()->route('fakultas-list');
     }
 
     /**
@@ -71,6 +81,8 @@ class FakultasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $fakultas = Fakultas::findOrFail($id);
+        $fakultas->delete();
+        return redirect()->back();
     }
 }

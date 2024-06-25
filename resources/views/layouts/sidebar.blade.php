@@ -33,25 +33,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                    @if(in_array(Auth::user()->role, ['prodi']))
-                        <li class="nav-item">
-                            <a href="{{ route('periodebs-list') }}" class="nav-link">
-                                <i class="nav-icon far fa-user"></i>
-                                <p>
-                                    Periode Beasiswa
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('beasiswa_detail-list') }}" class="nav-link">
-                                <i class="nav-icon far fa-user"></i>
-                                <p>
-                                    Beasiswa Detail
-                                </p>
-                            </a>
-                        </li>
-                    @endif
-                    @if(Auth::user()->role == 'fakultas')
+                    @if(in_array(Auth::user()->role, ['prodi', 'fakultas']))
                         <li class="nav-item">
                             <a href="{{ route('periodebs-list') }}" class="nav-link">
                                 <i class="nav-icon far fa-user"></i>

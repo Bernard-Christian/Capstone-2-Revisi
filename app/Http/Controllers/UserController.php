@@ -45,6 +45,8 @@ class UserController extends Controller
             'password' => 'required|string|confirmed',
             'role' => 'required|string',
             'status' => 'required|string',
+            'prodi' => 'required|string',
+            'fakultas' => 'required|string',
         ])->validate();
         $user = new User($validatedData);
         $user->save();

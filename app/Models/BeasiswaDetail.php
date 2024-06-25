@@ -20,6 +20,7 @@ class BeasiswaDetail extends Model
         'ipk',
         'poin_portofolio',
         'semester',
+        'prodi',
     ];
 
     protected $primaryKey = 'id_beasiswa_detail';

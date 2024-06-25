@@ -46,6 +46,7 @@
                         <tr>
                             <th>ID Fakultas</th>
                             <th>Fakultas</th>
+                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,6 +54,10 @@
                             <tr>
                                 <td>{{ $f->id_fakultas }}</td>
                                 <td>{{ $f->fakultas }}</td>
+                                <td>
+                                    <a href="{{ route('fakultas-edit', ['id' => $f->id_fakultas]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('fakultas-delete', ['id' => $f->id_fakultas]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

@@ -92,6 +92,18 @@
                                                placeholder="Contoh: Text" name="semester" required autofocus
                                                maxlength="45">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="beasiswa-detail-prodi">Prodi</label>
+                                        <input type="text" class="form-control" id="beasiswa-detail-prodi"
+                                               placeholder="Contoh: Text" name="prodi" required autofocus
+                                               maxlength="100">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="beasiswa-detail-fakultass">Fakultas</label>
+                                        <input type="text" class="form-control" id="beasiswa-detail-fakultas"
+                                               placeholder="Contoh: Text" name="fakultas" required autofocus
+                                               maxlength="100">
+                                    </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>
 

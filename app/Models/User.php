@@ -26,6 +26,8 @@ class User extends Authenticatable
         'password',
         'role',
         'status',
+        'prodi',
+        'fakultas',
     ];
 
     /**
@@ -47,4 +49,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
 }
